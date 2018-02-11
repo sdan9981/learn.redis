@@ -15,20 +15,14 @@ class TestController extends Controller{
 	public function actionList(){
 		$redis = Yii::$app->redis;
 		
-		// $redis->set('test','1234567');  //设置redis缓存
-		// die;
-	    // echo $redis->get('test');   //读取redis缓存
-	    // $source = $redis->del('test');
-	    // echo $source;
-	    // $var2 = Yii::$app->redis->keys("*");
+		$redis->set('test','1234567');  //设置redis缓存
+	    $redis->get('test');   //读取redis缓存
+	    $source = $redis->del('test');
+	    echo $source;
+	    $var2 = Yii::$app->redis->keys("*");
 	    // var_dump($redis->get('test'));
 	    // exit;
 	    // return $this->render('index');
-
-		//哈希
-	 //    $redis->hmset('test', 'key1','val1', 'key2','val2');
-	 //    $data = $redis->hgetall('test');
-		// print_r($data);
 
 		//列表
 		// $redis->rpush('list', 'aaa');
@@ -45,9 +39,14 @@ class TestController extends Controller{
 		// $data = $redis->zrange('t01',0,1);
 		// print_r($data);
 
-		$test = new Test();
-		$ret = $test->DbCache();
-		var_dump($ret);
+	}
+
+    //哈希
+	public function actionHashTest(){
+		$redis = Yii::$app->redis;
+	    $redis->hmset('test', 'key1','val1', 'key2','val2');
+	    $data = $redis->hgetall('test');
+		print_r($data);
 	}
 	
 }
