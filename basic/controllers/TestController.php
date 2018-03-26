@@ -48,5 +48,7 @@ class TestController extends Controller{
 	    $data = $redis->hgetall('test');
 		print_r($data);
 	}
+
+	//我只添加了一个注释
 	
 }
